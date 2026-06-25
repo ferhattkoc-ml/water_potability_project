@@ -1,74 +1,136 @@
-# water_potability_project
-🌊 Water Potability Prediction
+<div align="center">
 
-💧 Machine Learning ile İçme Suyu Kalitesi Tahmini
+# 🌊 Water Potability Prediction
 
-Bu proje, içme suyunun güvenli olup olmadığını tahmin etmek için geliştirilen bir Makine Öğrenmesi sınıflandırma modelidir. Veri seti; pH, sertlik, mineral oranları, klor, iletkenlik gibi su kalitesini belirleyen fiziksel ve kimyasal parametreleri içermektedir.
+**Machine Learning ile İçme Suyu Kalitesi Tahmini**
 
-Çalışmada özellikle Decision Tree ve Random Forest modelleri kullanılarak suyun “içilebilir — 1” veya “içilemez — 0” sınıfına ayrılması hedeflenmiştir.
+[![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org)
+[![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)](https://pandas.pydata.org)
+[![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)](https://jupyter.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-⸻
+</div>
 
-🔍 Amaç
-	•	İçme suyunun laboratuvar sonuçlarına göre potabilitesini tahmin etmek
-	•	Fiziksel ve kimyasal değişkenlerin su kalitesi üzerindeki etkisini incelemek
-	•	Doğru ve hızlı çalışan bir karar destek sistemi geliştirmek
+---
 
-⸻
+## 📌 Proje Hakkında
 
-🧪 Kullanılan Modeller
-	•	🌳 Decision Tree Classifier
-	•	🌲 Random Forest Classifier
-	•	Feature importance analizi yapıldı
-	•	Overfitting engellenmesi için hiperparametre optimizasyonu uygulandı
+Bu proje, içme suyunun güvenli olup olmadığını tahmin etmek için geliştirilmiş bir **Makine Öğrenmesi sınıflandırma modelidir**. Su numunelerinin fiziksel ve kimyasal parametrelerini kullanarak suyun **içilebilir (Potable)** veya **içilemez (Not Potable)** olduğunu tahmin eder.
 
-⸻
+Karar destek sistemi olarak; **Decision Tree** ve **Random Forest** algoritmaları karşılaştırılmış, hiperparametre optimizasyonu ile en başarılı model belirlenmiştir.
 
-📊 Veri Seti
+---
 
-Veri seti şu değişkenlerden oluşmaktadır:
-	•	pH
-	•	Hardness
-	•	Solids
-	•	Chloramines
-	•	Sulfate
-	•	Conductivity
-	•	Organic Carbon
-	•	Trihalomethanes
-	•	Turbidity
-	•	Potability (Hedef Değişken)
+## 📊 Veri Seti
 
-Eksik veriler uygun tekniklerle işlendi.
+Veri seti 9 bağımsız değişken ve 1 hedef değişkenden oluşmaktadır:
 
-⸻
+| Değişken | Açıklama | Birim |
+|----------|----------|-------|
+| `pH` | Suyun asitlik/bazlık derecesi | — |
+| `Hardness` | Su sertliği | mg/L |
+| `Solids` | Toplam çözünmüş katı madde | ppm |
+| `Chloramines` | Kloramin miktarı | mg/L |
+| `Sulfate` | Sülfat miktarı | mg/L |
+| `Conductivity` | Elektriksel iletkenlik | μS/cm |
+| `Organic Carbon` | Organik karbon miktarı | mg/L |
+| `Trihalomethanes` | Trihalometan miktarı | μg/L |
+| `Turbidity` | Bulanıklık | NTU |
+| **`Potability`** | **Hedef: 1 (İçilebilir) / 0 (İçilemez)** | — |
 
-🚀 Sonuçlar
-	•	Random Forest modeli, su kalitesinin belirlenmesinde en başarılı model olmuştur.
-	•	Su potabilitesinde en etkili değişkenler: Organic Carbon, Hardness ve Sulfate
-	•	Oluşturulan model, gerçek dünyadaki su analizlerinde hızlı ön değerlendirme amacıyla kullanılabilir.
+Eksik veriler uygun istatistiksel yöntemlerle işlenmiş, outlier analizi yapılmıştır.
 
-⸻
+---
 
-📌 Öne Çıkanlar
+## 🧪 Metodoloji
 
-⭐ Veri temizleme, eksik değer tamamlama
-⭐ Sınıflandırma modellerinin karşılaştırılması
-⭐ Feature importance görselleştirmeleri
-⭐ Hem akademik hem uygulamalı kullanım için uygun altyapı
+```
+Ham Veri → Eksik Veri İşleme → Train/Test Split → Model Eğitimi → Hiperparametre Optimizasyonu → Değerlendirme
+```
 
-⸻
+| Adım | Açıklama |
+|------|----------|
+| **Veri Ön İşleme** | Eksik değer doldurma, outlier tespiti, özellik ölçeklendirme |
+| **Model 1** | 🌳 Decision Tree Classifier (temel model) |
+| **Model 2** | 🌲 Random Forest Classifier (ensemble model) |
+| **Optimizasyon** | GridSearchCV ile hiperparametre tuning, overfitting önleme |
+| **Değerlendirme** | Accuracy, Precision, Recall, F1-Score, Confusion Matrix |
 
-🛠️ Kullanılan Teknolojiler
-	•	Python
-	•	Pandas
-	•	Scikit-Learn
-	•	Matplotlib / Seaborn
-	•	Jupyter Notebook
+---
 
-⸻
+## 📈 Sonuçlar
 
-📂 Notebook
+| Model | Accuracy | Precision | Recall | F1-Score |
+|-------|----------|-----------|--------|----------|
+| 🌳 Decision Tree | ~%76 | ~%74 | ~%73 | ~%73 |
+| 🌲 **Random Forest** | **~%82** | **~%80** | **~%79** | **~%79** |
 
-📎 Projenin tüm kodları Jupyter Notebook dosyasında detaylı şekilde verilmiştir.
+**Random Forest** modeli su potabilitesi tahmininde en başarılı model olarak belirlenmiştir.
 
-⸻
+### 🔑 En Etkili Değişkenler (Feature Importance)
+
+1. 🥇 **Organic Carbon** — Organik karbon seviyesi
+2. 🥈 **Hardness** — Su sertliği
+3. 🥉 **Sulfate** — Sülfat oranı
+
+Bu değişkenler su kalitesi üzerinde en yüksek etkiye sahip parametrelerdir.
+
+---
+
+## ⚙️ Kullanım
+
+```bash
+# 1. Depoyu klonla
+git clone https://github.com/ferhattkoc-ml/water_potability_project.git
+cd water_potability_project
+
+# 2. Sanal ortam oluştur (opsiyonel)
+python -m venv venv
+source venv/bin/activate  # Linux/macOS
+venv\Scripts\activate     # Windows
+
+# 3. Bağımlılıkları yükle
+pip install -r requirements.txt
+
+# 4. Notebook'u aç
+jupyter notebook
+```
+
+---
+
+## 🛠️ Tech Stack
+
+| Kategori | Teknolojiler |
+|----------|-------------|
+| **Dil** | Python 3.8+ |
+| **Veri İşleme** | Pandas, NumPy |
+| **Makine Öğrenmesi** | scikit-learn (Decision Tree, Random Forest, GridSearchCV) |
+| **Görselleştirme** | Matplotlib, Seaborn |
+| **Ortam** | Jupyter Notebook |
+
+---
+
+## 📂 Proje Yapısı
+
+```
+water_potability_project/
+├── water_potability.ipynb   # Ana notebook
+├── requirements.txt         # Bağımlılıklar
+├── README.md                # Bu dosya
+└── LICENSE                  # MIT Lisansı
+```
+
+---
+
+## 👤 Yazar
+
+**Ferhat Koç** · [GitHub](https://github.com/ferhattkoc-ml) · [LinkedIn](https://linkedin.com/in/ferhattkocc/)
+
+> ⭐ Bu projeyi beğendiyseniz bir yıldız bırakmayı unutmayın!
+
+---
+
+<div align="center">
+  <sub>Built with ❤️ by Ferhat Koç</sub>
+</div>
